@@ -7,6 +7,8 @@ public class Producto {
     private String descripcion;
     private Map<String, Integer> tallasDispo;
 
+    public Producto(){}
+
     public Producto(String sku, String nombre, String descripcion, Map<String, Integer> tallasDispo){
         this.sku = sku;
         this.nombre = nombre;
