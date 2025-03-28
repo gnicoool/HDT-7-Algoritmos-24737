@@ -65,6 +65,12 @@ public class Administrador {
         arbolxNombre.insert(producto.getNombre(), producto);
     }
 
+    public void listarxsku(){
+        arbolxSKU.inOrder();
+    }
+    public void listarxnombre(){
+        arbolxNombre.inOrder();
+    }
     public ArrayList<Producto> getInventarioTot() {
         return this.inventarioTot;
     }

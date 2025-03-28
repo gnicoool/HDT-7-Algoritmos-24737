@@ -76,7 +76,7 @@ public class Producto {
         return "--------------------\n" + 
                 "SKU: " + sku + "\n" + "Nombre: "+ nombre + "\n" + 
                 "Descripcion: "+ descripcion + "\n" + 
-                "Tallas Disponibles: " + (tallasDispo.isEmpty() ? "No hay tallas" : tallasDispo);
+                "Tallas Disponibles: " + (tallasDispo.isEmpty() ? "No hay tallas" : tallasDispo)+ "\n" ;
 
     } 
 }

@@ -37,10 +37,22 @@ public class Main {
             sc.nextLine();
             switch (opcionMenu) {
                 case 1:/*Listar productos */
+                    System.out.println("1. Listar por SKU");
+                    System.out.println("2. Listar por nombre");
+                    int opListar = sc.nextInt();
+                    sc.nextLine();
                     System.out.println("----- Inventario -----");
-                    for(Producto producto : admin.getInventarioTot()){
-                        System.out.println(producto);
+                    switch (opListar) {
+                        case 1:
+                            admin.listarxsku();
+                            break;
+                        case 2:
+                            admin.listarxnombre();
+                            break;
+                        default:
+                            break;
                     }
+                    
                     break;
                 case 2: /*Buscar producto por sku o por nombre */
                     System.out.println("1. Buscar por SKU");
