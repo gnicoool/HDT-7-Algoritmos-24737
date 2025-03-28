@@ -5,9 +5,13 @@ import java.util.ArrayList;
 
 public class Administrador {
     private ArrayList<Producto> inventarioTot;
+    private BinaryTree<String, Producto> arbolxSKU;
+    private BinaryTree<String, Producto> arbolxNombre;
 
     public Administrador(){
         inventarioTot = new ArrayList<>();
+        arbolxSKU = new BinaryTree<>();
+        arbolxNombre = new BinaryTree<>();
     }
     /*Lector de archivo csv */
     public ArrayList<Producto> leer(String archivo) throws IOException{
@@ -37,6 +41,8 @@ public class Administrador {
                     }
                 }
                 inventarioTot.add(producto);
+                arbolxSKU.insert(producto.getSku(), producto);
+                arbolxNombre.insert(producto.getNombre(), producto);
             }
             br.close();
         } catch (Exception e) {
@@ -44,6 +50,19 @@ public class Administrador {
             throw e;
         }
         return inventarioTot;
+    }
+
+    public Producto searchxSKU(String sku){
+        return arbolxSKU.search(sku);
+    }
+
+    public Producto searchxNombre(String nombre){
+        return arbolxNombre.search(nombre);
+    }
+
+    public void insertarArboles(Producto producto){
+        arbolxSKU.insert(producto.getSku(), producto);
+        arbolxNombre.insert(producto.getNombre(), producto);
     }
 
     public ArrayList<Producto> getInventarioTot() {

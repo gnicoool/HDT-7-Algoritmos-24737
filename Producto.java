@@ -7,7 +7,9 @@ public class Producto {
     private String descripcion;
     private Map<String, Integer> tallasDispo;
 
-    public Producto(){}
+    public Producto(){
+        this.tallasDispo= new HashMap<>();
+    }
 
     public Producto(String sku, String nombre, String descripcion, Map<String, Integer> tallasDispo){
         this.sku = sku;
@@ -28,10 +30,19 @@ public class Producto {
         }
     }
 
-    public void deleteTalla(String talla){
-        tallasDispo.remove(talla.toUpperCase());
+    public boolean venderTalla(String talla, int cantidad){
+        if (!tallasDispo.containsKey(talla.toUpperCase())) {
+            System.err.println("No hay talla en inventario");
+            return false;
+        }
+        int stock = tallasDispo.get(talla);
+        if (stock < cantidad) {
+            System.err.println("No  hay cantidad de tallas suficiente");
+            return false;
+        }
+        tallasDispo.put(talla, stock - cantidad);
+        return true;
     }
-
     public String getSku() {
         return this.sku;
     }
@@ -60,4 +71,12 @@ public class Producto {
         this.tallasDispo = tallasDispo;
     }
 
+    @Override
+    public String toString(){
+        return "--------------------\n" + 
+                "SKU: " + sku + "\n" + "Nombre: "+ nombre + "\n" + 
+                "Descripcion: "+ descripcion + "\n" + 
+                "Tallas Disponibles: " + (tallasDispo.isEmpty() ? "No hay tallas" : tallasDispo);
+
+    } 
 }
